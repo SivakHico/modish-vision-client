@@ -13,7 +13,7 @@ const types = {
 }
 
 const Layout = () => {
-    const { user, setUser } = useContext(AppContext)
+    const { user, setUser, handleLogout } = useContext(AppContext)
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [showLogin, setShowLogin] = useState(false)
@@ -22,10 +22,6 @@ const Layout = () => {
 
     function handelShowLogin() {
         setShowLogin(!showLogin)
-    }
-
-    function logOut() {
-        setUser(null)
     }
 
     function handelShowSignup(type) {
@@ -38,11 +34,11 @@ const Layout = () => {
         try {
             const res = await axios.post("http://localhost:3000/api/v1/users/login", { email, password });
             setUser(res.data.user);
-            localStorage.setItem('email',res.data.user.email)
+            localStorage.setItem('token', JSON.stringify(res.data.token))
             // localStorage.getItem
             handelShowLogin()
         } catch (err) {
-            console.log('fucking error',err);
+            console.log('fucking error', err);
         }
     };
     const handleRegSubmit = async (e) => {
@@ -50,8 +46,8 @@ const Layout = () => {
         try {
             const res = await axios.post("http://localhost:3000/api/v1/users/register", { email, password, type });
             setUser(res.data.user);
-            localStorage.setItem('email',res.data.user.email)
-            localStorage.setItem('type',res.data.user.type)
+            localStorage.setItem('email', res.data.user.email)
+            localStorage.setItem('type', res.data.user.type)
             handelShowSignup()
         } catch (err) {
             console.log(err);
@@ -62,7 +58,7 @@ const Layout = () => {
         <>
             <nav className="w3-bar w3-light-grey w3-border">
                 <Link to="/" className="w3-bar-item w3-button w3-mobile">Home</Link>
-                <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={user ? logOut : handelShowLogin}>{user ? "Logout" : "Login"}</Link>
+                <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={user ? handleLogout : handelShowLogin}>{user ? "Logout" : "Login"}</Link>
                 <div className="w3-dropdown-hover">
                     <button className="w3-button w3-mobile">Sign up</button>
                     <div className="w3-dropdown-content w3-bar-block w3-border">
