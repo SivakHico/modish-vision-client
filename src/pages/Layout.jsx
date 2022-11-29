@@ -1,22 +1,31 @@
 import { Outlet, Link } from "react-router-dom"
-import { useState } from "react"
+import Home from "./Home";
 import axios from "axios"
+import DevelopersList from "./DevelopersList";
+import JobsList from "./JobsList";
+import { useState, useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
+
 
 const types = {
-    COMP: "Company",
-    CAND: "Candidate",
+    Company: "Company",
+    Developer: "Developer",
 }
 
 const Layout = () => {
-    const [user, setUser] = useState(null);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const { user, setUser } = useContext(AppContext)
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
     const [showLogin, setShowLogin] = useState(false)
     const [showSignup, setShowSignup] = useState(false)
     const [type, setType] = useState(null)
 
     function handelShowLogin() {
         setShowLogin(!showLogin)
+    }
+
+    function logOut() {
+        setUser(null)
     }
 
     function handelShowSignup(type) {
@@ -29,9 +38,11 @@ const Layout = () => {
         try {
             const res = await axios.post("http://localhost:3000/api/v1/users/login", { email, password });
             setUser(res.data.user);
+            localStorage.setItem('email',res.data.user.email)
+            // localStorage.getItem
             handelShowLogin()
         } catch (err) {
-            console.log(err);
+            console.log('fucking error',err);
         }
     };
     const handleRegSubmit = async (e) => {
@@ -39,6 +50,8 @@ const Layout = () => {
         try {
             const res = await axios.post("http://localhost:3000/api/v1/users/register", { email, password, type });
             setUser(res.data.user);
+            localStorage.setItem('email',res.data.user.email)
+            localStorage.setItem('type',res.data.user.type)
             handelShowSignup()
         } catch (err) {
             console.log(err);
@@ -49,12 +62,12 @@ const Layout = () => {
         <>
             <nav className="w3-bar w3-light-grey w3-border">
                 <Link to="/" className="w3-bar-item w3-button w3-mobile">Home</Link>
-                <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={handelShowLogin}>Login</Link>
+                <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={user ? logOut : handelShowLogin}>{user ? "Logout" : "Login"}</Link>
                 <div className="w3-dropdown-hover">
                     <button className="w3-button w3-mobile">Sign up</button>
                     <div className="w3-dropdown-content w3-bar-block w3-border">
-                        <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={() => handelShowSignup("COMP")}>as a Company</Link>
-                        <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={() => handelShowSignup("CAND")}>as a Developer</Link>
+                        <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={() => handelShowSignup("Company")}>as a Company</Link>
+                        <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={() => handelShowSignup("Developer")}>as a Developer</Link>
                     </div>
                 </div>
                 <input type="text" className="w3-bar-item w3-input w3-white w3-mobile" placeholder="Search..." />
@@ -90,7 +103,7 @@ const Layout = () => {
                             <span onClick={handelShowSignup} className="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
                         </div>
                         <form className="w3-container" onSubmit={handleRegSubmit}>
-                            <h4>SignUp to Our Space as {types[type]}!</h4>
+                            <h4>Join Our Space as a {types[type]}!</h4>
                             <div className="w3-section">
                                 <input className="w3-input w3-border w3-margin-bottom" onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" name="email" required />
                                 <input className="w3-input w3-border" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" name="password" required />
@@ -107,9 +120,8 @@ const Layout = () => {
             }
             {user ?
                 <span>
-                    Welcome to the <b>{user.isAdmin ? "admin" : "user"}</b>
-                    <b>{user.email}</b>
-                </span> : 'Fcuk'}
+                    Welcome to Our Platform {user.email} You're Registerd as a {user.type} {user.type === "Company" ? <DevelopersList /> : <JobsList />}
+                </span> : ''}
             <Outlet />
         </>
     )
