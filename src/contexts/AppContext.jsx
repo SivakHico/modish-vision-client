@@ -15,7 +15,7 @@ export default function AppContextProvider({ children }) {
 
         const jwt = localStorage.getItem('token')
         if (jwt) {
-            console.log('jwt', jwt)
+            //console.log('jwt', jwt)
             try {
                 fetch(`${import.meta.env.VITE_API_URL}/users/check-token`, {
                     headers: {
@@ -53,6 +53,8 @@ export default function AppContextProvider({ children }) {
             value={{
                 user,
                 setUser,
+                userProfile,
+                setUserProfile,
                 candidates,
                 setCandidates,
                 handleLogout

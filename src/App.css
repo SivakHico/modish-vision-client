@@ -59,7 +59,8 @@ template {
 }
 
 a {
-    background-color: transparent
+    background-color: transparent;
+    text-decoration: none;
 }
 
 a:active,
@@ -415,7 +416,7 @@ a {
 }
 
 .w3-badge {
-    border-radius: 50%
+    : 50%
 }
 
 .w3-ul {
@@ -425,8 +426,8 @@ a {
 }
 
 .w3-ul li {
-    padding: 8px 16px;
-    border-bottom: 1px solid #ddd
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 .w3-ul li:last-child {
@@ -579,7 +580,6 @@ a {
 .w3-bar .w3-bar-item {
     padding: 8px 16px;
     float: left;
-    width: auto;
     border: none;
     display: block;
     outline: 0
@@ -592,7 +592,12 @@ a {
 }
 
 .w3-bar .w3-button {
-    white-space: normal
+    white-space: normal;
+    border: 1px soild black;
+    padding: 10px 20px;
+    background-color: #00CED1;
+    margin: 10px 20px;
+    border-radius: 2px;
 }
 
 .w3-bar-block .w3-bar-item {
@@ -1059,7 +1064,8 @@ a {
 }
 
 .w3-circle {
-    border-radius: 50%
+    border-radius: 2px;
+    width: 115px;
 }
 
 .w3-round-small {
@@ -1132,7 +1138,12 @@ a {
 
 .w3-card-4,
 .w3-hover-shadow:hover {
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19)
+    border: 1px dotted #444;
+    border-radius: 2px;
+}
+
+.w3-card-4:hover {
+    border: 1px solid #00CED1;
 }
 
 .w3-spin {
@@ -1496,7 +1507,6 @@ a {
 
 .w3-button:hover {
     color: #000 !important;
-    background-color: #ccc !important
 }
 
 .w3-transparent,
@@ -1549,20 +1559,20 @@ a {
 .w3-hover-blue-grey:hover,
 .w3-blue-gray,
 .w3-hover-blue-gray:hover {
-    color: #fff !important;
-    background-color: #607d8b !important
+    color: #000 !important;
+    background-color: #00CED1 !important
 }
 
 .w3-green,
 .w3-hover-green:hover {
-    color: #fff !important;
-    background-color: #4CAF50 !important
+    color: #000 !important;
+    background-color: #00CED1 !important
 }
 
 .w3-light-green,
 .w3-hover-light-green:hover {
     color: #000 !important;
-    background-color: #8bc34a !important
+    background-color: #00CED1 !important
 }
 
 .w3-indigo,
@@ -1662,7 +1672,7 @@ a {
 .w3-light-gray,
 .w3-hover-light-gray:hover {
     color: #000 !important;
-    background-color: #f1f1f1 !important
+    background-color: #fff !important
 }
 
 .w3-dark-grey,
@@ -1847,7 +1857,8 @@ a {
 
 .w3-border-blue,
 .w3-hover-border-blue:hover {
-    border-color: #2196F3 !important
+    border-color: #2196F3 !important;
+    padding: 14px 10px;
 }
 
 .w3-border-light-blue,
@@ -2013,4 +2024,99 @@ a {
     padding: 1rem 1.5rem;
     width: 24rem;
     border-radius: 0.1rem;
+}
+
+/*>>>>>>>>>>>logo text animation >>>>>>>>>>>*/
+.rainbow {
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: fantasy;
+    letter-spacing: 2px;
+}
+
+.rainbow_text_animated {
+    background: linear-gradient(to right, #8FBC8F, #00FFFF, #00CED1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 5s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+
+    0%,
+    100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+
+.float-right {
+    float: right !important;
+}
+
+.search {
+    background-color: #eee;
+    width: 800px !important;
+    max-width: 100%;
+    border-radius: 2px;
+    height: 41px;
+    margin: 10px;
+}
+
+.dotted-border {
+    border-bottom: 1px dotted #ccc;
+}
+
+.just-btn {
+    white-space: normal;
+    border: 1px soild black;
+    padding: 10px 20px;
+    background-color: #00CED1;
+    margin: 10px 20px;
+    border-radius: 2px;
+}
+
+.home {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.2)), url("src/img/main-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+    padding: 100px 20px;
+    border-radius: 2px;
+    margin: 40px 20px;
+    height: 420px;
+}
+
+.home .btn-find {
+    margin-top: 50px;
+    color: black;
+}
+
+.dev-click {
+    cursor: pointer;
+    margin: 5px 0px;
+}
+
+.footer {
+    margin: 0px 20px 10px;
+    height: 200px;
+    border-radius: 2px;
+}
+
+.capitz {
+    text-transform: capitalize;
+}
+
+.upper {
+    text-transform: uppercase;
 }

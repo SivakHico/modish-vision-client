@@ -10,13 +10,13 @@ import JobsList from "./pages/JobsList";
 import NoPage from "./pages/NoPage";
 
 export default function App() {
-  
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Home />} />
+            <Route index element={<Home />} />
             <Route path="DevelopersList" element={<DevelopersList />} />
             <Route path="DeveloperForm" element={<DeveloperForm />} />
             <Route path="JobsList" element={<JobsList />} />

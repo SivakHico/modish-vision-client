@@ -5,7 +5,7 @@ import DevelopersList from "./DevelopersList";
 import JobsList from "./JobsList";
 import { useState, useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
-
+import Footer from "./Footer";
 
 const types = {
     Company: "Company",
@@ -35,7 +35,6 @@ const Layout = () => {
             const res = await axios.post("http://localhost:3000/api/v1/users/login", { email, password });
             setUser(res.data.user);
             localStorage.setItem('token', JSON.stringify(res.data.token))
-            // localStorage.getItem
             handelShowLogin()
         } catch (err) {
             console.log('fucking error', err);
@@ -56,19 +55,18 @@ const Layout = () => {
 
     return (
         <>
-            <nav className="w3-bar w3-light-grey w3-border">
-                <Link to="/" className="w3-bar-item w3-button w3-mobile">Home</Link>
-                <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={user ? handleLogout : handelShowLogin}>{user ? "Logout" : "Login"}</Link>
-                <div className="w3-dropdown-hover">
+            <nav className="w3-bar w3-light-grey dotted-border">
+                <Link to="/" className="w3-bar-item w3-mobile"><span className="rainbow rainbow_text_animated">LinkThem.de</span></Link>
+                <input type="text" className="material-icons w3-bar-item w3-input w3-mobile search" placeholder="Search..." />
+                <button className="w3-bar-item w3-button w3-green w3-mobile">Go</button>
+                <Link to="/" className="float-right w3-bar-item w3-button w3-mobile" onClick={user ? handleLogout : handelShowLogin}>{user ? "Logout" : "Login"}</Link>
+                <div className="float-right w3-dropdown-hover">
                     <button className="w3-button w3-mobile">Sign up</button>
-                    <div className="w3-dropdown-content w3-bar-block w3-border">
+                    <div className="w3-dropdown-content w3-bar-block">
                         <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={() => handelShowSignup("Company")}>as a Company</Link>
                         <Link to="/" className="w3-bar-item w3-button w3-mobile" onClick={() => handelShowSignup("Developer")}>as a Developer</Link>
                     </div>
                 </div>
-                <input type="text" className="w3-bar-item w3-input w3-white w3-mobile" placeholder="Search..." />
-                <button className="w3-bar-item w3-button w3-green w3-mobile">Go</button>
-                <Link to="/" className="w3-bar-item w3-button w3-mobile">mOdish visiOn</Link>
             </nav>
             {showLogin &&
                 <div id="login-modal">
@@ -115,10 +113,11 @@ const Layout = () => {
                 </div>
             }
             {user ?
-                <span>
-                    Welcome to Our Platform {user.email} You're Registerd as a {user.type} {user.type === "Company" ? <DevelopersList /> : <JobsList />}
-                </span> : ''}
+                <div className="w3-container">
+                    <div className="w3-panel w3-pale-blue w3-leftbar w3-border-blue">Welcome to Our Platform {user.email} You're Registerd as a {user.type}</div> {user.type === "Company" ? <DevelopersList /> : <JobsList />}
+                </div> : ''}
             <Outlet />
+            <Footer />
         </>
     )
 };

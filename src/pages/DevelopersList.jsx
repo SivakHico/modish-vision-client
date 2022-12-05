@@ -39,28 +39,26 @@ const DevelopersList = () => {
                 <p>{user.paidAccount && user.type === "company" ? developers[selectedCandidateIndex].email : "Please pay for contact details"}</p>
                 <p>{user.paidAccount && user.type === "company" ? developers[selectedCandidateIndex].linkedIn : "Please pay for contact details"}</p>
                 {!user.paidAccount && user.type === "company" ? "" : <button className="w3-button w3-block w3-green w3-section w3-padding" type="submit">Contact {developers[selectedCandidateIndex].name} now for $5</button>}
-
               </div>
             </form>
             <div className="w3-container w3-border-top w3-padding-16 w3-light-grey">
               <button onClick={closeModal} type="button" className="w3-button w3-red">Cancel</button>
-              <span className="w3-right w3-padding w3-hide-small">Forgot <a href="#">Password?</a></span>
             </div>
           </div>
         </div>
       }
       {
         developers.map((dev, i) => (
-          <div onClick={() => handelContact(i)} className="w3-row w3-margin">
-            <div className="w3-third">
-              <img src="" alt="55" />
-            </div>
-            <div className="w3-twothird w3-container">
-              <h2>{dev.firstname}</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
+          <div onClick={() => handelContact(i)} className="w3-row dev-click">
+            <ul className="w3-ul w3-card-4">
+              <li className="w3-bar">
+                <img src={dev.image} className="w3-bar-item w3-circle w3-hide-small" />
+                <div className="w3-bar-item">
+                  <span className="w3-large upper"><h2>{dev.firstname} {dev.lastname}</h2></span>
+                  <span className="capitz"><h4><b>{dev.specialist}</b><small> Has {dev.experience} Years Experience living in {dev.city}</small></h4></span>
+                </div>
+              </li>
+            </ul>
           </div>
         ))}
     </>
