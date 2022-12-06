@@ -6,6 +6,7 @@ import JobsList from "./JobsList";
 import { useState, useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 const types = {
     Company: "Company",
@@ -19,6 +20,13 @@ const Layout = () => {
     const [showLogin, setShowLogin] = useState(false)
     const [showSignup, setShowSignup] = useState(false)
     const [type, setType] = useState(null)
+    const navigate = useNavigate();
+
+    function goToDeveloperForm() {
+        navigate('/DevelopersList')
+    }
+
+
 
     function handelShowLogin() {
         setShowLogin(!showLogin)
@@ -114,7 +122,7 @@ const Layout = () => {
             }
             {user ?
                 <div className="w3-container">
-                    <div className="w3-panel w3-pale-blue w3-leftbar w3-border-blue">Welcome to Our Platform {user.email} You're Registerd as a {user.type}</div> {user.type === "Company" ? <DevelopersList /> : <JobsList />}
+                    <div className="w3-panel w3-pale-blue w3-leftbar w3-border-blue">Welcome to Our Platform {user.email} You're Registerd as a {user.type} <span onClick={goToDeveloperForm}><b>Go To Developers List</b></span> </div> {user.type === "Company" ? <DevelopersList /> : <JobsList />}
                 </div> : ''}
             <Outlet />
             <Footer />

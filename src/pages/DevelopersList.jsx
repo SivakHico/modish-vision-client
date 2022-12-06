@@ -15,6 +15,33 @@ const DevelopersList = () => {
     })()
   }, []);
 
+  function handelPayment(e) {
+    e.preventDefault()
+    fetch('http://localhost:3000/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        items: [
+          { id: 1, quantity: 3 },
+          { id: 2, quantity: 1 }
+        ]
+      })
+    })
+      .then(async (res) => {
+        if (res.ok) return res.json()
+        const json = await res.json()
+        return await Promise.reject(json)
+      })
+      .then(({ url }) => {
+        window.location = url
+      })
+      .catch((e) => {
+        console.error(e.error)
+      })
+  }
+
   function handelContact(index) {
     setSelectedCandidateIndex(index)
   }
@@ -31,14 +58,14 @@ const DevelopersList = () => {
             <div className="w3-center"><br />
               <span onClick={closeModal} className="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
             </div>
-            <form className="w3-container" onSubmit={handelContact}>
-              <h4>{developers[selectedCandidateIndex].name}</h4>
+            <form className="w3-container" onSubmit={handelPayment}>
+              <h3>Good choice!</h3>
               <div className="w3-section">
-                {/* REMINDER: only show phone, email, linkedIn if user.paidAccount && user.type === "company" */}
-                <p>{user.paidAccount && user.type === "company" ? developers[selectedCandidateIndex].phone : "Please pay for contact details"}</p>
-                <p>{user.paidAccount && user.type === "company" ? developers[selectedCandidateIndex].email : "Please pay for contact details"}</p>
-                <p>{user.paidAccount && user.type === "company" ? developers[selectedCandidateIndex].linkedIn : "Please pay for contact details"}</p>
-                {!user.paidAccount && user.type === "company" ? "" : <button className="w3-button w3-block w3-green w3-section w3-padding" type="submit">Contact {developers[selectedCandidateIndex].name} now for $5</button>}
+                <p>For a small one-off fee, you can then contact the Developers of your choice directly.</p>
+                <p>1 month 20.00 Euro</p>
+                <p>6 months 70.00 Euro</p>
+                <p>12 months 100.00 Euro</p>
+                {!user.paidAccount && user.type === "company" ? "" : <button className="w3-button w3-block w3-green w3-section w3-padding" type="submit">Pay</button>}
               </div>
             </form>
             <div className="w3-container w3-border-top w3-padding-16 w3-light-grey">
@@ -51,7 +78,7 @@ const DevelopersList = () => {
         developers.map((dev, i) => (
           <div onClick={() => handelContact(i)} className="w3-row dev-click">
             <ul className="w3-ul w3-card-4">
-              <li className="w3-bar">
+              <li key={i} className="w3-bar">
                 <img src={dev.image} className="w3-bar-item w3-circle w3-hide-small" />
                 <div className="w3-bar-item">
                   <span className="w3-large upper"><h2>{dev.firstname} {dev.lastname}</h2></span>

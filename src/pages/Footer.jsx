@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <div class="w3-container w3-red footer">
+        <div className="w3-container w3-red footer">
             <h5>LinkThem.de</h5>
             <ul>
                 <li>Privacy Policy</li>
