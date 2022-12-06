@@ -8,6 +8,7 @@ import DevelopersList from "./pages/DevelopersList";
 import DeveloperForm from "./pages/DeveloperForm";
 import JobsList from "./pages/JobsList";
 import NoPage from "./pages/NoPage";
+import Success from "./pages/success";
 
 export default function App() {
 
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="DevelopersList" element={<DevelopersList />} />
             <Route path="DeveloperForm" element={<DeveloperForm />} />
             <Route path="JobsList" element={<JobsList />} />
+            <Route path="success" element={<Success />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>

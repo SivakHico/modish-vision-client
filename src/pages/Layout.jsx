@@ -26,8 +26,6 @@ const Layout = () => {
         navigate('/DevelopersList')
     }
 
-
-
     function handelShowLogin() {
         setShowLogin(!showLogin)
     }
