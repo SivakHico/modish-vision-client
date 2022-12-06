@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 
 const JobsList = () => {
     return (
-        <div className="hero-image">
-            <h1>Find Your Dream job Quick and easy: create a profile and apply today!</h1>
-            <Link to="/DeveloperForm" className="w3-btn w3-border w3-large">Start Now</Link>
+        <>
+            <div className="hero-image">
+                <h1>Find Your Dream job Quick and easy: create a profile and apply today!</h1>
+                <Link to="/DeveloperForm" className="w3-btn w3-border w3-large">Start Now</Link>
+            </div>
             <div className="w3-row w3-margin">
                 <div className="w3-third">
                     <img src="" alt="55" />
@@ -16,7 +18,7 @@ const JobsList = () => {
                     </p>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
