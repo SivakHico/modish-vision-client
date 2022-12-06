@@ -38,7 +38,7 @@ const Layout = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/api/v1/users/login", { email, password });
+            const res = await axios.post("https://link-them-api.onrender.com/api/v1/users/login", { email, password });
             setUser(res.data.user);
             localStorage.setItem('token', JSON.stringify(res.data.token))
             handelShowLogin()
@@ -49,7 +49,7 @@ const Layout = () => {
     const handleRegSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/api/v1/users/register", { email, password, type });
+            const res = await axios.post("https://link-them-api.onrender.com/api/v1/users/register", { email, password, type });
             setUser(res.data.user);
             localStorage.setItem('email', res.data.user.email)
             localStorage.setItem('type', res.data.user.type)

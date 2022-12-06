@@ -9,7 +9,7 @@ const DevelopersList = () => {
   useEffect(() => {
     //iife
     (async () => {
-      const res = await axios.get("http://localhost:3000/api/v1/developers");
+      const res = await axios.get("https://link-them-api.onrender.com/api/v1/developers");
       console.log(res)
       setDevelopers(res.data.developerList);
     })()
@@ -17,7 +17,7 @@ const DevelopersList = () => {
 
   function handelPayment(e) {
     e.preventDefault()
-    fetch('http://localhost:3000/create-checkout-session', {
+    fetch('https://link-them-api.onrender.com/create-checkout-session', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

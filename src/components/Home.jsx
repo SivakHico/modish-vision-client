@@ -4,7 +4,7 @@ export default function Home() {
     const [products, setproducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/v1/products")
+        fetch("https://link-them-api.onrender.com/api/v1/products")
             .then(response => response.json())
             .then(result => setproducts(result.productList))
     }, [])

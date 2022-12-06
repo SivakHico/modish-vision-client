@@ -26,7 +26,7 @@ const DeveloperForm = () => {
     const handleDeveloperForm = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/api/v1/developers",
+            const res = await axios.post("https://link-them-api.onrender.com/api/v1/developers",
                 {
                     user_id: user._id,
                     gender,
