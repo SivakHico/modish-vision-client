@@ -24,8 +24,7 @@ const DevelopersList = () => {
       },
       body: JSON.stringify({
         items: [
-          { id: 1, quantity: 3 },
-          { id: 2, quantity: 1 }
+          { id: 1, quantity: 1 },
         ]
       })
     })
@@ -62,9 +61,8 @@ const DevelopersList = () => {
               <h3>Good choice!</h3>
               <div className="w3-section">
                 <p>For a small one-off fee, you can then contact the Developers of your choice directly.</p>
-                <p>1 month 20.00 Euro</p>
-                <p>6 months 70.00 Euro</p>
-                <p>12 months 100.00 Euro</p>
+                <p><b>Monthly 20.00 Euro</b></p>
+                <p>Subscription can be canceled at any time.</p>
                 {!user.paidAccount && user.type === "company" ? "" : <button className="w3-button w3-block w3-green w3-section w3-padding" type="submit">Pay</button>}
               </div>
             </form>
