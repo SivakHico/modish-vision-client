@@ -86,7 +86,7 @@ const Layout = () => {
                                 <input className="w3-input w3-border w3-margin-bottom" onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" name="email" required />
                                 <input className="w3-input w3-border" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" name="password" required />
                                 <button className="w3-button w3-block w3-green w3-section w3-padding" type="submit">Login</button>
-                                <input className="w3-check w3-margin-top" type="checkbox" /> Remember me
+                                <input className="w3-check w3-margin-top" type="checkbox" />Remember me
                             </div>
                         </form>
                         <div className="w3-container w3-border-top w3-padding-16 w3-light-grey">
@@ -108,7 +108,7 @@ const Layout = () => {
                                 <input className="w3-input w3-border w3-margin-bottom" onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" name="email" required />
                                 <input className="w3-input w3-border" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" name="password" required />
                                 <button className="w3-button w3-block w3-green w3-section w3-padding" type="submit">Sign Up</button>
-                                <input className="w3-check w3-margin-top" type="checkbox" /> Remember me
+                                <input className="w3-check w3-margin-top" type="checkbox" />Remember me
                             </div>
                         </form>
                         <div className="w3-container w3-border-top w3-padding-16 w3-light-grey">
