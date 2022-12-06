@@ -8,7 +8,7 @@ import DevelopersList from "./pages/DevelopersList";
 import DeveloperForm from "./pages/DeveloperForm";
 import JobsList from "./pages/JobsList";
 import NoPage from "./pages/NoPage";
-import Success from "./pages/success";
+// import Success from "./pages/success";
 
 export default function App() {
 
