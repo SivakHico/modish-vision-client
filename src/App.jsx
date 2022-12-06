@@ -21,7 +21,7 @@ export default function App() {
             <Route path="DevelopersList" element={<DevelopersList />} />
             <Route path="DeveloperForm" element={<DeveloperForm />} />
             <Route path="JobsList" element={<JobsList />} />
-            <Route path="success" element={<Success />} />
+            {/*<Route path="success" element={<Success />} />*/}
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
