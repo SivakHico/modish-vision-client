@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const DeveloperForm = () => {
     const { user, setUser, userProfile } = useContext(AppContext)
 
-    if (!user) return "loading"
+    if (!user) return "Please Login First"
     const navigate = useNavigate();
     const [gender, setGender] = useState(userProfile?.gender || "")
     const [email, setEmail] = useState(user?.email)
